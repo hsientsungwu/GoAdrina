@@ -26,6 +26,7 @@ if ($user) {
     	  $user_profile = $facebook->api('/me');
   	} catch (FacebookApiException $e) {
     	  error_log($e);
+        log_error(array('type' => $e->getType, 'message' => $e->getMessage()));
     	  $user = null;
   	}
 } else {

@@ -9,7 +9,7 @@
 			<div class="small-8 large-centered columns">
 				<div class="row collapse">
 			        <div class="small-10 columns">
-			          	<input type="text" name="k" placeholder="Start the social shopping journey ... ">
+			          	<input type="text" name="k" placeholder="Start the social shopping journey ... " value="<?php echo ($_GET['k'] ? $_GET['k'] : ''); ?>">
 			        </div>
 			        <div class="small-2 columns">
 			          	<a href="#" class="button prefix submit">Search</a>

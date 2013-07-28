@@ -3,6 +3,8 @@
 function search($key, $page = 0) {
 	global $db;
 
+	if ($key == '') return array('data' => array(), 'total' => 0);
+
 	$limit = 20;
 
 	$data = $db->fetchRows("SELECT message, thumbnail, link, created_time, source FROM facebook_posts WHERE message LIKE '%{$key}%' ORDER BY created_time DESC");

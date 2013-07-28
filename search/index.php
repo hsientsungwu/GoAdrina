@@ -8,7 +8,7 @@ if ($_GET) {
 
 	$results = search($key, $page);
 
-	if ($results['total'] < $results['limit']) {
+	if ($results['total'] < $results['limit'] || $results['total'] == 0) {
 		$pages = 1;
 	} else {
 		$pages = ceil($results['total'] / $results['limit']);
@@ -56,20 +56,25 @@ if ($_GET) {
 			<?php } ?>
 					</div>
 			</div>
-
-			<div class="pagination-centered">
-			  	<ul class="pagination">
-			  		<li class="arrow <?php echo ($current <= 1 ? 'unavailable' : ''); ?>"><a href="/search/?k='<?php echo $_GET['key']; ?>&page=<?php echo ($current-1 >= 1 ? $current-1 : $current); ?>">&laquo;</a></li>
-			  		<?php
-			  			for($i=1; $i <= $pages; $i++) {
-			  				$class = ($i == $current ? 'current unavailable' : '');
-			  				echo '<li class="' . $class . ' "><a href="/search/?k=' . $_GET['key'] . '&page=' . $i . ' ">' . $i . '</a></li>';
-			  			}
-			  		?>
-				    
-				    <li class="arrow <?php echo ($current >= $page ? 'unavailable' : ''); ?>"><a href="/search/?k=<?php echo $_GET['key']; ?>&page=<?php echo ($current+1 < $pages ? $current+1 : $current); ?>">&raquo;</a></li>
-			  	</ul>
-			</div>
 		</div>
+		<div class="pagination-centered">
+		  	<ul class="pagination">
+		  		<li class="arrow <?php echo ($current <= 1 ? 'unavailable' : ''); ?>"><a href="/search/?k='<?php echo $_GET['key']; ?>&page=<?php echo ($current-1 >= 1 ? $current-1 : $current); ?>">&laquo;</a></li>
+		  		<?php
+		  			for($i=1; $i <= $pages; $i++) {
+		  				$class = ($i == $current ? 'current unavailable' : '');
+		  				echo '<li class="' . $class . ' "><a href="/search/?k=' . $_GET['key'] . '&page=' . $i . ' ">' . $i . '</a></li>';
+		  			}
+		  		?>
+			    
+			    <li class="arrow <?php echo ($current >= $page ? 'unavailable' : ''); ?>"><a href="/search/?k=<?php echo $_GET['key']; ?>&page=<?php echo ($current+1 < $pages ? $current+1 : $current); ?>">&raquo;</a></li>
+		  	</ul>
+		</div>
+		<div class="row"><hr>
+			<div class="small-3 large-centered columns">
+	            ©2013 Copyright Go Adrina!
+	        </div>
+	    </div>
+	    <br>
 	</body>
 </html>

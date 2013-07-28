@@ -19,14 +19,14 @@ function log_cron($stats = array(), $total_posts = 0) {
 	$send_email_flag = false;
 
 	foreach ($stats as $fb_group_id => $fb_group_data) {
-		if ($fb_group_data['store_posts_count'] > 0 || $fb_group_data['store_users_count'] > 0) {
+		if ($fb_group_data['stat']['store_posts_count'] > 0 || $fb_group_data['stat']['store_users_count'] > 0) {
 			$send_email_flag = true;
 
 			$newCronLog = array(
-				'total_cron_posts' => $posts_count, 
-				'total_store_posts' => $store_posts_count, 
-				'total_store_users' => $store_users_count,
-				'cron_source' => $source,
+				'total_cron_posts' => $fb_group_data['stat']['posts_count'], 
+				'total_store_posts' => $fb_group_data['stat']['store_posts_count'], 
+				'total_store_users' => $fb_group_data['stat']['store_users_count'],
+				'cron_source' => $fb_group_id,
 			);
 			
 			$affected = $db->insert($newCronLog, 'log_crons');
@@ -41,7 +41,7 @@ function log_cron($stats = array(), $total_posts = 0) {
 	}
 
 	if ($send_email_flag) {
-		$content['subject'] = '[Andrina Social Cron] Ran ' . $total_posts . ' on ' . date("Y-m-d H:i:s");
+		$content['subject'] = '[Andrina Social Cron] Ran ' . $total_posts . ' posts on ' . date("Y-m-d H:i:s");
 		send_email($content, 'admin');
 	}
 

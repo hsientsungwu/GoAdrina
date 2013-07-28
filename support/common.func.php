@@ -13,29 +13,38 @@ function log_error($content) {
 	return ($affected) ? true : false;
 }
 
-function log_cron($posts_count, $store_posts_count, $store_users_count, $source) {
+function log_cron($stats = array(), $total_posts = 0) {
 	global $db;
 
-	if ($store_posts_count > 0 || $store_users_count > 0) {
-		$newCronLog = array(
-			'total_cron_posts' => $posts_count, 
-			'total_store_posts' => $store_posts_count, 
-			'total_store_users' => $store_users_count,
-			'cron_source' => $source,
-		);
+	$send_email_flag = false;
 
-		$affected = $db->insert($newCronLog, 'log_crons');
+	foreach ($stats as $fb_group_id => $fb_group_data) {
+		if ($fb_group_data['store_posts_count'] > 0 || $fb_group_data['store_users_count'] > 0) {
+			$send_email_flag = true;
 
-		$content['subject'] = 'Cron job run at : ' . date("Y-m-d H:i:s");
-		$content['body'] = "<ul>
-								<li>Source: {$source}</li>
-								<li>Total Cron Posts: {$posts_count}</li>
-								<li>Total Stored Posts: {$store_posts_count}</li>
-								<li>Total Stored Users: {$store_users_count}</li>
-							</ul>";
+			$newCronLog = array(
+				'total_cron_posts' => $posts_count, 
+				'total_store_posts' => $store_posts_count, 
+				'total_store_users' => $store_users_count,
+				'cron_source' => $source,
+			);
+			
+			$affected = $db->insert($newCronLog, 'log_crons');
+
+			$content['body'] .= "<p><ul>
+									<li>Source: {$fb_group_data['group']}</li>
+									<li>Total Cron Posts: {$fb_group_data['stat']['posts_count']}</li>
+									<li>Total Stored Posts: {$fb_group_data['stat']['store_posts_count']}</li>
+									<li>Total Stored Users: {$fb_group_data['stat']['store_users_count']}</li>
+								</ul></p>";
+		}
+	}
+
+	if ($send_email_flag) {
+		$content['subject'] = '[Andrina Social Cron] Ran ' . $total_posts . ' on ' . date("Y-m-d H:i:s");
 		send_email($content, 'admin');
 	}
-		
+
 	return ($affected) ? true : false;
 }
 

@@ -1,4 +1,9 @@
 <?php
+
+if ($_SERVER['DOCUMENT_ROOT'] == "") $_SERVER['DOCUMENT_ROOT'] = '/home/hwu1986/public_html/latteblog/tools/andres/htdocs/';
+
+require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
+
 $start = microtime(true);
 
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
@@ -41,10 +46,19 @@ foreach ($fb_groups as $fb_group_name => $fb_group_id) {
         }
     }
 
-    log_cron($posts_count, $store_posts_count, $store_users_count, $fb_group_id);
+    $stats[$fb_group_id] = array(
+        'group' => $fb_group_name,
+        'stat' => array(
+            'posts_count' => $posts_count,
+            'store_posts_count' => $store_posts_count,
+            'store_users_count' => $store_users_count,
+        )
+    );
 
     $total_posts_count += $posts_count;
 }
+
+log_cron($stats, $total_posts_count);
 
 $end = microtime(true);
 

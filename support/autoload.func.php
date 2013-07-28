@@ -8,6 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/config/master_config.php');
 // special functions
 
 // common functions
+require_once($_SERVER['DOCUMENT_ROOT'] . '/support/facebook.func.php');
 
 function __autoload($className) {
 	$configRoot = $_SERVER['DOCUMENT_ROOT'] . '/config/';
@@ -33,3 +34,13 @@ $mysql = new MysqlSetting();
 $db = new dbMysqli();
 $db->open($mysql->database, $mysql->username, $mysql->password, $mysql->host);
 $db->execute("SET CHARACTER SET utf8");
+
+// initalize facebook class
+$fbSetting = new FacebookSetting();
+
+$fb = new Facebook(
+	array(
+  		'appId'  => $fbSetting->appId,
+  		'secret' => $fbSetting->appSecret,
+	)
+);

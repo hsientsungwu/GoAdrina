@@ -2,36 +2,38 @@
 
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
-$fbSetting = new FacebookSetting();
-
-$facebook = new Facebook(array(
-  'appId'  => $fbSetting->appId,
-  'secret' => $fbSetting->appSecret,
-));
-
 // Get User ID
-$user = $facebook->getUser();
-
-var_dump($user);
+$user = getCurrentFacebookUser();
 
 if ($user) {
-  try {
-    // Proceed knowing you have a logged in user who's authenticated.
-    $user_profile = $facebook->api('/me');
-  } catch (FacebookApiException $e) {
-    error_log($e);
-    $user = null;
-  }
-}
+  	try {
+        $logoutUrl = $facebook->getLogoutUrl();
 
-// Login or logout url will be needed depending on current user state.
-if ($user) {
-  $logoutUrl = $facebook->getLogoutUrl();
+        $storedUser = $db->fetchRow('SELECT * FROM facebook_session WHERE user_id = ?', array($user));
+
+        if ($storedUser == null) {
+            $newUser = array(
+              'user_id' => $user,
+              'access_token' => $facebook->getAccessToken(),
+              'updated_time' => time(),
+            );
+
+            $db->insert($newUser, 'facebook_session');
+        } else {
+            $facebook->setAccessToken($storedUser['access_token']);
+        }
+            
+    	  $user_profile = $facebook->api('/me');
+  	} catch (FacebookApiException $e) {
+    	  error_log($e);
+    	  $user = null;
+  	}
 } else {
-  $loginUrl = $facebook->getLoginUrl();
+    $loginUrl = $facebook->getLoginUrl();
 }
 
 ?>
+
 <!doctype html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>

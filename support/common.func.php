@@ -20,12 +20,12 @@ function send_email($content, $type = 'admin') {
 	// message
 	$message = "
 	<html>
-	<head>
-	  <title>An error just occured!</title>
-	</head>
-	<body>
-	  <p>{$content['body']}</p>
-	</body>
+		<head>
+	  		<title>An error just occured!</title>
+		</head>
+		<body>
+	  		<p>{$content['body']}</p>
+		</body>
 	</html>
 	";
 

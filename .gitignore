@@ -2,3 +2,7 @@
 *.sublime-workspace
 
 *.sublime-project
+
+config/master_config.php
+
+config/mysql_config.php

@@ -1,5 +1,7 @@
 <?php
 
+require_once "dbFacile.class.php";
+
 class dbMysqli extends dbFacile {
 	public function affectedRows($result = null) {
 		return $this->connection->affected_rows;

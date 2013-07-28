@@ -8,3 +8,5 @@ config/master_config.php
 config/mysql_config.php
 
 .DS_Store
+
+config/facebook_config.php

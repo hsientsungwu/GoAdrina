@@ -3,17 +3,20 @@ mb_internal_encoding('utf-8');
 header("Content-Type: text/html; charset=utf-8");
 
 // configuration
-require_once($_SERVER['DOCUMENT_ROOT'] . '/configs/master_config.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/config/master_config.php');
 
 // special functions
 
 // common functions
 
-function __autoload($className) { 
+function __autoload($className) {
+	$configRoot = $_SERVER['DOCUMENT_ROOT'] . '/config/';
 	$classRoot = $_SERVER['DOCUMENT_ROOT'] . '/class/';
+	$supportRoot = $_SERVER['DOCUMENT_ROOT'] . '/support/';
 
 	// classes
-	$class['dbMysqli']    	 = $classRoot . 'mysqli.class.php';
+	$class['dbMysqli']    	 = $classRoot . 'dbMysqli.class.php';
+	$class['Facebook']       = $supportRoot . 'Facebook/facebook.php';
 
     if (file_exists($class[$className])) {
           require_once $class[$className]; 

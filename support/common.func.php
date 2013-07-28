@@ -75,3 +75,16 @@ function send_email($content, $type = 'admin') {
 	// Mail it
 	mail($to, $subject, $message, $headers);
 }
+
+function mysql_clean($input, $array = 1) {
+	if(!is_array($input) || is_string($input)) {
+		$input = array($input);
+		$array = 0;
+	}
+
+	foreach($input as $key => $value) {
+			$return[$key] = mysql_real_escape_string($value);
+	}
+
+	return ($array) ? $return : $return[0];
+}

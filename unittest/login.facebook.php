@@ -3,7 +3,7 @@
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
 // Get User ID
-$user = getCurrentFacebookUser();
+$user = $fb->getUser();
 
 if ($user) {
   	try {

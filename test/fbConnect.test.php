@@ -2,33 +2,30 @@
 
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
-$fbSetting = new FacebookSetting();
-
-$facebook = new Facebook(array(
-  'appId'  => $fbSetting->appId,
-  'secret' => $fbSetting->appSecret,
-));
-
 // Get User ID
-$user = $facebook->getUser();
+$user = $fb->getUser();
 
-var_dump($user);
+echo $fb->getAccessToken();
 
 if ($user) {
   try {
     // Proceed knowing you have a logged in user who's authenticated.
-    $user_profile = $facebook->api('/me');
+    $user_profile = $fb->api('/me');
   } catch (FacebookApiException $e) {
     error_log($e);
     $user = null;
   }
 }
 
+$user = null;
 // Login or logout url will be needed depending on current user state.
 if ($user) {
-  $logoutUrl = $facebook->getLogoutUrl();
+  $logoutUrl = $fb->getLogoutUrl();
 } else {
-  $loginUrl = $facebook->getLoginUrl();
+  $params = array(
+    'scope' => 'user_groups', 'read_stream'
+  );
+  $loginUrl = $fb->getLoginUrl($params);
 }
 
 ?>

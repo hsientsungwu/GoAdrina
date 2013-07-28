@@ -1,5 +1,17 @@
 <?php
 
+function renewFacebookAccessToken() {
+	global $db, $fb;
+
+	$newSession = array(
+		'access_token' => $fb->getAccessToken()
+	);
+
+	$affected = $db->update($newSession, 'facebook_session', 'id = ?', array($fb->getUser()));
+
+	return ($affected) ? true : false;
+}
+
 function isFacebookAccountStored($userId) {
 	global $db;
 
@@ -63,4 +75,13 @@ function addFacebookPost($post) {
     $affected = $db->insert($newPost, 'facebook_posts');
 
     return ($affected) ? true : false;
+}
+
+function getLastFacebookCronForSource($source) {
+	global $db;
+
+	$time = $db->fetchCell("SELECT cron_time FROM log_crons WHERE cron_source = ? ORDER BY cron_time DESC");
+
+	return $time;
+
 }

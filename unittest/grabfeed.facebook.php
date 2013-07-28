@@ -4,36 +4,50 @@ $start = microtime(true);
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
 $fb_groups = array(
-    'BBS' => '127267637407455'
+    'BBS' => '127267637407455',
+    'BST' => '203507416440736',
 );
 
-$count = 0;
+$total_posts_count = 0;
 
 foreach ($fb_groups as $fb_group_name => $fb_group_id) {
 
-	$fb_group_feeds = $fb->api('/' . $fb_group_id .'/feed' ,'GET');
+    $posts_count = $store_posts_count = $store_users_count = 0;
 
-	if (count($fb_group_feeds)) {
+    $lastCronTime = getLastFacebookCronForSource($fb_group_id);
 
-		foreach ($fb_group_feeds['data'] as $post) {
+    if ($lastCronTime) {
+        $timeParams = 'since=' . $lastCronTime;
+        $fb_group_feeds = $fb->api('/' . $fb_group_id .'/feed?'. $timeParams, 'GET');
+    } else {
+        $fb_group_feeds = $fb->api('/' . $fb_group_id .'/feed', 'GET');
+    }
 
-			if (!isFacebookAccountStored($post['from']['id'])) { 
-                //addFacebookAccount($post['from']['id']);
+    if (count($fb_group_feeds['data'])) {
+
+        foreach ($fb_group_feeds['data'] as $post) {
+
+            if (!isFacebookAccountStored($post['from']['id'])) {
+                if (addFacebookAccount($post['from']['id'])) $store_users_count++;
             }
 
             if (!isFacebookPostStored($post['id'])) {
-            	//addFacebookPost($post);
+                if (addFacebookPost($post)) $store_posts_count++;
+
+                print_r("<br><b>{$post['id']}</b><br>{$post['message']}<br>");
             }
 
-            $count++;
-		}
-	}
+            $posts_count++;
+        }
+    }
+
+    log_cron($posts_count, $store_posts_count, $store_users_count, $fb_group_id);
+
+    $total_posts_count += $posts_count;
 }
 
 $end = microtime(true);
 
 $total = $end - $start;
 
-print_r("<h3>Time spent to execute {$count} posts: {$total} seconds");
-
-
+print_r("<h3>Time spent to execute {$total_posts_count} posts: {$total} seconds");

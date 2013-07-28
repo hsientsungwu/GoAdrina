@@ -13,6 +13,32 @@ function log_error($content) {
 	return ($affected) ? true : false;
 }
 
+function log_cron($posts_count, $store_posts_count, $store_users_count, $source) {
+	global $db;
+
+	if ($store_posts_count > 0 || $store_users_count > 0) {
+		$newCronLog = array(
+			'total_cron_posts' => $posts_count, 
+			'total_store_posts' => $store_posts_count, 
+			'total_store_users' => $store_users_count,
+			'cron_source' => $source,
+		);
+
+		$affected = $db->insert($newCronLog, 'log_crons');
+
+		$content['subject'] = 'Cron job run at : ' . date("Y-m-d H:i:s");
+		$content['body'] = "<ul>
+								<li>Source: {$source}</li>
+								<li>Total Cron Posts: {$posts_count}</li>
+								<li>Total Stored Posts: {$store_posts_count}</li>
+								<li>Total Stored Users: {$store_users_count}</li>
+							</ul>";
+		send_email($content, 'admin');
+	}
+		
+	return ($affected) ? true : false;
+}
+
 function send_email($content, $type = 'admin') {	
 	// subject
 	$subject = $content['subject'];
@@ -35,7 +61,7 @@ function send_email($content, $type = 'admin') {
 
 	// Additional headers
 	$headers .= 'To: Steve <hwu1986@gmail.com>' . "\r\n";
-	$headers .= 'From: Go Andres! <no-reply@goandres.com>' . "\r\n";
+	$headers .= 'From: Go Andrina! <no-reply@goandrina.com>' . "\r\n";
 	
 	// Mail it
 	mail($to, $subject, $message, $headers);

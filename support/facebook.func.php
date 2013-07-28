@@ -55,9 +55,8 @@ function addFacebookPost($post) {
         'account' =>      $post['from']['id'],
         'message' =>              ($post['message']) ? $post['message'] : 'No Message',
         'thumbnail' =>            $post['picture'],
-        'image' =>                $post['source'],
-        'facebook_link' =>        $post['link'],
-        'facebook_createdtime' => $post['created_time'],
+        'link' =>        $post['link'],
+        'created_time' => $post['created_time'],
         'source' => $ids[0]
     );
     

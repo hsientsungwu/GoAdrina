@@ -79,7 +79,14 @@ class dbMysqli extends dbFacile {
 	}
 	protected function _fetchAll($result) {
 		// this isn't available unless the mysql native driver is being used ... hmm
-		$data = $result->fetch_all(MYSQLI_ASSOC);
+		//$data = $result->fetch_all(MYSQLI_ASSOC);
+
+		$data = array();
+
+		while($f = $this->_fetchRow($result)) {
+			$data[] = $f;
+		}
+
 		$result->free();
 		return $data;
 	}

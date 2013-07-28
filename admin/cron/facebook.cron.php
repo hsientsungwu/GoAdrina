@@ -9,8 +9,9 @@ $start = microtime(true);
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
 $fb_groups = array(
-    'BBS' => '127267637407455',
-    'BST' => '203507416440736',
+    'Belize Buy & Sell' => '127267637407455',
+    'Belize Sell & Trade' => '203507416440736',
+    'Cayo Classifield' => '300373796698711'
 );
 
 $total_posts_count = 0;

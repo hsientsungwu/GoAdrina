@@ -68,7 +68,7 @@ if ($_GET) {
 					</div>
 				<?php }
 			} else { ?>
-					<p>No result found ... </p>
+					<div class="panel">No result found ... </div>
 			<?php } ?>
 					</div>
 			</div>

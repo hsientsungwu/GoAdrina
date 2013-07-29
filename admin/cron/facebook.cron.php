@@ -11,7 +11,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 $fb_groups = array(
     'Belize Buy & Sell' => '127267637407455',
     'Belize Sell & Trade' => '203507416440736',
-    'Cayo Classifield' => '300373796698711'
+    'Cayo Classifield' => '300373796698711',
+    'Area 501 Classifieds and Adds' => '520309021343790'
 );
 
 $total_posts_count = 0;

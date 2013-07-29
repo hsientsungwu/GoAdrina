@@ -1,6 +1,6 @@
 <?php
 
-if ($_SERVER['DOCUMENT_ROOT'] == "") $_SERVER['DOCUMENT_ROOT'] = '/home/hwu1986/public_html/latteblog/tools/andres/htdocs/';
+if ($_SERVER['DOCUMENT_ROOT'] == "") $_SERVER['DOCUMENT_ROOT'] = '/home/hwu1986/public_html/goadrina/htdocs/';
 
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 

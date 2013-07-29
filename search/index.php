@@ -26,7 +26,7 @@ if ($_GET) {
 <html>
 	<head>
 		<title>Go Adrina! - Social Search Engine</title>
-		<meta property="og:url" content="http://adrina.latteblog.com"/>
+		<meta property="og:url" content="http://www.goadrina.com"/>
 		<meta property="og:title" content="Social Search Engine"/>
 		<meta property="og:site_name" content="Go Adrina! - Social Search Engine"/>
 		<meta property="og:description" content="Adrina is a online social search engine that cron on Facebook posts from various 

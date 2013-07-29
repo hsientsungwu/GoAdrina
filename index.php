@@ -1,6 +1,13 @@
 <html>
 	<head>
-		<title>Go Andrina!</title>
+		<title>Go Adrina! - Social Search Engine</title>
+		<meta property="og:url" content="http://adrina.latteblog.com"/>
+		<meta property="og:title" content="Go Adrina! - Social Search Engine"/>
+		<meta property="og:site_name" content="Go Adrina! - Social Search Engine"/>
+		<meta property="og:description" content="Adrina is a online social search engine that cron on Facebook posts from various 
+		Belizean Buy & Sell groups which gives the users the ability to perform search and direct link to the Facebook page. Adrina is a free service 
+		developed by @HsienTsungWu who is currently Software Engineer at Qgiv"/>
+		<meta property="og:image" content="http://adrina.latteblog.com/img/goadrina_favicon.png"/>
 
 		<?php include($_SERVER['DOCUMENT_ROOT'] . '/frontend/header.frontend.php'); ?>
 

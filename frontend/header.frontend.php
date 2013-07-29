@@ -1,3 +1,5 @@
+<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/css/normalize.css" />
 <link rel="stylesheet" href="/css/foundation.css" />
 <link rel="stylesheet" href="/css/home.css" />

@@ -1,3 +1,5 @@
 <?php
 
-var_dump($_SERVER);
+require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
+
+echo $fb->getUser();

@@ -5,6 +5,8 @@ function search($key, $page = 0) {
 
 	if ($key == '') return array('data' => array(), 'total' => 0);
 
+	addSearchHistory($key);
+	
 	$limit = 20;
 
 	$data = $db->fetchRows("SELECT message, thumbnail, link, created_time, source FROM facebook_posts WHERE message LIKE '%{$key}%' ORDER BY created_time DESC");
@@ -23,4 +25,19 @@ function search($key, $page = 0) {
 	);
 
 	return $returnData;
+}
+
+function addSearchHistory($key) {
+	global $db, $fb;
+
+	$user = $fb->getUser();
+
+	$newHistory = array(
+		'user' => ($user ? $user : '0'),
+		'key' => $key
+	);
+
+	$affected = $db->insert($newHistory, 'search_history');
+
+	return ($affected ? true : false);
 }

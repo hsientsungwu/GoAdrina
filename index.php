@@ -20,16 +20,16 @@
 			<div class="small-8 large-centered columns">
 				<ul data-orbit id="featured">
 				  	<li>
-				    	<img src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-ash4/1001370_10200397335999031_940214363_n.jpg" />
-				    	<div class="orbit-caption">...</div>
+				    	<img src="/img/featured_frame.png" />
+				    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
 				  	</li>
 				  	<li>
-				    	<img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/s403x403/1016884_173318742847125_1520328722_n.jpg" />
-				    	<div class="orbit-caption">...</div>
+				    	<img src="/img/featured_frame.png" />
+				    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
 				  	</li>
 				  	<li>
-				    	<img src="https://sphotos-a-atl.xx.fbcdn.net/hphotos-ash3/36577_10200967641386020_2052646944_n.jpg" />
-				    	<div class="orbit-caption">...</div>
+				    	<img src="/img/featured_frame.png" />
+				    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
 				  	</li>
 				</ul>
 			</div>

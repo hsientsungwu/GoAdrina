@@ -1,18 +1,15 @@
 <html>
 	<head>
 		<title>Go Andrina!</title>
-		<link rel="stylesheet" href="css/normalize.css" />
-  		<link rel="stylesheet" href="css/foundation.css" />
-  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
-  		<script src="/js/custom.modernizr.js"></script>
-  		<script src="/js/home.js"></script>
+
+		<?php include($_SERVER['DOCUMENT_ROOT'] . '/frontend/header.frontend.php'); ?>
+
   		<script src="/js/foundation/foundation.js"></script>
   		<script src="/js/foundation/foundation.orbit.js"></script>
 	</head>
 	<body>
-		<br><br>
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/frontend/searchbar.frontend.php"); ?>
-		<div class="orbit row">
+		<div class="orbit row" styles="min-height: 500px;">
 			<div class="small-8 large-centered columns">
 				<ul data-orbit id="featured">
 				  	<li>
@@ -30,11 +27,9 @@
 				</ul>
 			</div>
 		</div>
-		<div class="row"><hr>
-			<div class="small-3 large-centered columns">
-	            ©2013 Copyright Go Adrina!
-	        </div>
-	    </div>
+		
+		<?php include($_SERVER['DOCUMENT_ROOT'] . '/frontend/footer.frontend.php'); ?>
+		<br>
 	    <script>
 		  	$(document).foundation();
 		</script>

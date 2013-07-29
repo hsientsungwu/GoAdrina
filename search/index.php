@@ -25,31 +25,26 @@ if ($_GET) {
 
 <html>
 	<head>
-		<title>Go Andrina!</title>
-		<link rel="stylesheet" href="/css/normalize.css" />
-  		<link rel="stylesheet" href="/css/foundation.css" />
-  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
-  		<script src="/js/home.js"></script>
+		<title>Go Adrina!</title>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . '/frontend/header.frontend.php'); ?>
 	</head>
 	<body>
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/frontend/searchbar.frontend.php"); ?>
 
-		<div class="results-container" style="min-height: 500px;">
+		<div class="results-container">
 			<div class="row">
 				<div class="small-12 large-centered columns">
 			<?php
 
 			if (count($results['data'])) {
 				foreach ($results['data'] as $index => $result) { ?>
-					<p>
-						<span>
-							<?php 
-								echo date('M j', strtotime($result['created_time'])) . 
-								' - <a href="' . $result['link'] . '" target="_blank">' . $result['message'] . '</a> ' . 
-								($result['thumbnail'] ? '<font color="green"><i>pic</i></font>' : ''); 
-							?>
-						</span>
-					</p>
+					<div class="panel">
+						<?php 
+							echo '<span class="label">' . date('M j', strtotime($result['created_time'])) . '</span>' . 
+							' - <a href="' . $result['link'] . '" target="_blank"><medium>' . $result['message'] . '</medium></a> ' . 
+							($result['thumbnail'] ? '<font color="green"><i>pic</i></font>' : ''); 
+						?>
+					</div>
 				<?php }
 			} else { ?>
 					<p>No result found ... </p>
@@ -70,11 +65,8 @@ if ($_GET) {
 			    <li class="arrow <?php echo ($current >= $page ? 'unavailable' : ''); ?>"><a href="/search/?k=<?php echo $_GET['key']; ?>&page=<?php echo ($current+1 < $pages ? $current+1 : $current); ?>">&raquo;</a></li>
 		  	</ul>
 		</div>
-		<div class="row"><hr>
-			<div class="small-3 large-centered columns">
-	            ©2013 Copyright Go Adrina!
-	        </div>
-	    </div>
+
+		<?php include($_SERVER['DOCUMENT_ROOT'] . '/frontend/footer.frontend.php'); ?>
 	    <br>
 	</body>
 </html>

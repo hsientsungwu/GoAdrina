@@ -1,0 +1,16 @@
+/* Home */
+.top-search-bar {
+	padding-top: 35px;
+}
+
+.logo {
+	padding-bottom: 20px;
+}
+
+.results-container {
+	min-height: 350px;
+}
+
+body {
+	background-image: url("/img/goadrina_bkg.png");
+}

@@ -69,8 +69,8 @@ function send_email($content, $type = 'admin') {
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 	// Additional headers
-	$headers .= 'To: Steve <hwu1986@gmail.com>' . "\r\n";
-	$headers .= 'From: Go Andrina! <no-reply@goandrina.com>' . "\r\n";
+	$headers .= 'To: Steve <steve@goadrina.com>' . "\r\n";
+	$headers .= 'From: Go Andrina! <no-reply@goadrina.com>' . "\r\n";
 	
 	// Mail it
 	mail($to, $subject, $message, $headers);

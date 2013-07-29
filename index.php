@@ -36,7 +36,7 @@
 		</div>
 		
 		<?php include($_SERVER['DOCUMENT_ROOT'] . '/frontend/footer.frontend.php'); ?>
-		<br>
+		</br>
 	    <script>
 		  	$(document).foundation();
 		</script>

@@ -1,6 +1,7 @@
 <?php
 
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
+$start = microtime(true);
 
 if ($_GET) {
 	$key = htmlentities($_GET['k']);
@@ -20,7 +21,6 @@ if ($_GET) {
 		$current = $results['page'];
 	}
 }
-
 ?>
 
 <html>
@@ -42,6 +42,19 @@ if ($_GET) {
 		<div class="results-container">
 			<div class="row">
 				<div class="small-12 large-centered columns">
+					<div class="row time-result">
+						<div class="small-4 large-centered columns">
+						<?php
+							if (count($results['total'])) {
+								$total_time = microtime(true) - $start;
+								$total_time = number_format($total_time, 5);
+								echo "<i>About {$results['total']} results ({$total_time} seconds) </i>";
+							}
+							
+						?>
+						</div>
+					</div>
+					
 			<?php
 
 			if (count($results['data'])) {

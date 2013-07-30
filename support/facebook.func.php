@@ -85,3 +85,11 @@ function getLastFacebookCronForSource($source) {
 	return $time;
 
 }
+
+function getFacebookGroups() {
+    global $db;
+
+    $groups = $db->fetchKeyValue("SELECT id, name FROM facebook_groups ORDER BY id");
+
+    return $groups;
+}

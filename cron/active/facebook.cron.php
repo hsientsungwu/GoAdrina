@@ -8,18 +8,11 @@ $start = microtime(true);
 
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
-$fb_groups = array(
-    'Belize Buy & Sell' => '127267637407455',
-    'Belize Sell & Trade' => '203507416440736',
-    'Cayo Classifield' => '300373796698711',
-    'Area 501 Classifieds and Adds' => '520309021343790',
-    'Belize Classifieds by Basilio' => '392248577488534',
-    'Belize Classifieds by Harry' => '257770514334740',
-);
+$fb_groups = getFacebookGroups();
 
 $total_posts_count = 0;
 
-foreach ($fb_groups as $fb_group_name => $fb_group_id) {
+foreach ($fb_groups as $fb_group_id => $fb_group_name) {
 
     $posts_count = $store_posts_count = $store_users_count = 0;
 

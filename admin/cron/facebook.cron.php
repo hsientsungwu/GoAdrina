@@ -13,7 +13,8 @@ $fb_groups = array(
     'Belize Sell & Trade' => '203507416440736',
     'Cayo Classifield' => '300373796698711',
     'Area 501 Classifieds and Adds' => '520309021343790',
-    'Belize Classifieds' => '392248577488534'
+    'Belize Classifieds by Basilio' => '392248577488534',
+    'Belize Classifieds by Harry' => '257770514334740',
 );
 
 $total_posts_count = 0;

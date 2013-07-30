@@ -18,3 +18,7 @@ body {
 .time-result {
 	padding-bottom: 10px;
 }
+
+.post-box {
+	min-height: 212px;
+}

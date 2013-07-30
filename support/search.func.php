@@ -7,7 +7,7 @@ function search($key, $page = 1) {
 
 	addSearchHistory($key);
 	
-	$limit = 20;
+	$limit = 12;
 	$offset = ($page-1)*$limit;
 
 	$totalCount = $db->fetchCell("SELECT COUNT(id) FROM facebook_posts WHERE message LIKE '%{$key}%'");

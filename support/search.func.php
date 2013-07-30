@@ -1,25 +1,22 @@
 <?php
 
-function search($key, $page = 0) {
+function search($key, $page = 1) {
 	global $db;
 
 	if ($key == '') return array('data' => array(), 'total' => 0);
 
 	addSearchHistory($key);
 	
-	$limit = 20;
+	$limit = 12;
+	$offset = ($page-1)*$limit;
 
-	$data = $db->fetchRows("SELECT message, thumbnail, link, created_time, source FROM facebook_posts WHERE message LIKE '%{$key}%' ORDER BY created_time DESC");
+	$totalCount = $db->fetchCell("SELECT COUNT(id) FROM facebook_posts WHERE message LIKE '%{$key}%'");
 
-	if (count($data) > $limit) {
-		$result = array_slice($data, $page*$limit, $limit);
-	} else {
-		$result = $data;
-	}
+	$result = $db->fetchRows("SELECT message, thumbnail, link, created_time, source FROM facebook_posts WHERE message LIKE '%{$key}%' ORDER BY created_time DESC LIMIT {$offset}, {$limit}");
 
 	$returnData = array(
 		'data' => (count($result) ? $result : array()),
-		'total' => count($data),
+		'total' => $totalCount,
 		'limit' => $limit,
 		'page' => $page
 	);

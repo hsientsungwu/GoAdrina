@@ -18,3 +18,11 @@ body {
 .time-result {
 	padding-bottom: 10px;
 }
+
+.post-box {
+	min-height: 225px;
+}
+
+.post-box-img {
+	padding-top: 10px;
+}

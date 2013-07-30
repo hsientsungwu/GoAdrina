@@ -16,26 +16,30 @@
   		<script src="/js/foundation/foundation.orbit.js"></script>
 	</head>
 	<body>
+
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/frontend/searchbar.frontend.php"); ?>
-		<div class="orbit row" styles="min-height: 500px;">
-			<div class="small-8 large-centered columns">
-				<ul data-orbit id="featured">
-				  	<li>
-				    	<img src="/img/featured_frame.png" />
-				    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
-				  	</li>
-				  	<li>
-				    	<img src="/img/featured_frame.png" />
-				    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
-				  	</li>
-				  	<li>
-				    	<img src="/img/featured_frame.png" />
-				    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
-				  	</li>
-				</ul>
+
+		<div class="row">
+			<div class="orbit row" styles="min-height: 500px;">
+				<div class="large-8 large-centered columns">
+					<ul data-orbit id="featured">
+					  	<li>
+					    	<img src="/img/featured_frame.png" />
+					    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
+					  	</li>
+					  	<li>
+					    	<img src="/img/featured_frame.png" />
+					    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
+					  	</li>
+					  	<li>
+					    	<img src="/img/featured_frame.png" />
+					    	<div class="orbit-caption">Email hwu1986@gmail.com for more information about featured ads</div>
+					  	</li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		
+			
 		<?php include($_SERVER['DOCUMENT_ROOT'] . '/frontend/footer.frontend.php'); ?>
 		</br>
 	    <script>

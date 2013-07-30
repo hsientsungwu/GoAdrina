@@ -75,15 +75,15 @@ if ($_GET) {
 		</div>
 		<div class="pagination-centered">
 		  	<ul class="pagination">
-		  		<li class="arrow <?php echo ($current <= 1 ? 'unavailable' : ''); ?>"><a href="/search/?k='<?php echo $_GET['key']; ?>&page=<?php echo ($current-1 >= 1 ? $current-1 : $current); ?>">&laquo;</a></li>
+		  		<li class="arrow <?php echo ($current <= 1 ? 'unavailable' : ''); ?>"><a href="/search/?k=<?php echo $key; ?>&page=<?php echo ($current-1 >= 1 ? $current-1 : $current); ?>">&laquo;</a></li>
 		  		<?php
 		  			for($i=1; $i <= $pages; $i++) {
 		  				$class = ($i == $current ? 'current unavailable' : '');
-		  				echo '<li class="' . $class . ' "><a href="/search/?k=' . $_GET['key'] . '&page=' . $i . ' ">' . $i . '</a></li>';
+		  				echo '<li class="' . $class . ' "><a href="/search/?k=' . $key . '&page=' . $i . ' ">' . $i . '</a></li>';
 		  			}
 		  		?>
 			    
-			    <li class="arrow <?php echo ($current >= $page ? 'unavailable' : ''); ?>"><a href="/search/?k=<?php echo $_GET['key']; ?>&page=<?php echo ($current+1 < $pages ? $current+1 : $current); ?>">&raquo;</a></li>
+			    <li class="arrow <?php echo ($current >= $page ? 'unavailable' : ''); ?>"><a href="/search/?k=<?php echo $key; ?>&page=<?php echo ($current+1 <= $pages ? $current+1 : $current); ?>">&raquo;</a></li>
 		  	</ul>
 		</div>
 

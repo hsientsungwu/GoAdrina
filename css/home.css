@@ -20,5 +20,9 @@ body {
 }
 
 .post-box {
-	min-height: 212px;
+	min-height: 225px;
+}
+
+.post-box-img {
+	padding-top: 10px;
 }

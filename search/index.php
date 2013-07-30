@@ -100,9 +100,9 @@ if ($_GET['view'] == 'grid') {
 
 									$thumbnail = (strlen($result['thumbnail']) > 1 ? $result['thumbnail'] : '/img/nophoto.jpg');
 
-									echo "<div class=\"large-4 columns\"><a href=\"" . $result['link'] . "\"><div class=\"panel text-center post-box\">
+									echo "<div class=\"large-4 columns\"><a target=\"_blank\" href=\"" . $result['link'] . "\"><div class=\"panel text-center post-box\">
 										<span class=\"label\">" . substr($result['message'],0, 30) . "..." . "</span>
-										<img src=\"" . $thumbnail . "\" /></div></a></div>";
+										<img class=\"post-box-img\"src=\"" . $thumbnail . "\" /></div></a></div>";
 
 								}
 							}

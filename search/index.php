@@ -26,8 +26,9 @@ if ($_GET) {
 <html>
 	<head>
 		<title>Go Adrina! - Social Search Engine</title>
+		<meta name="viewport" content="width=device-width" />
 		<meta property="og:url" content="http://www.goadrina.com"/>
-		<meta property="og:title" content="Social Search Engine"/>
+		<meta property="og:title" content="Go Adrina! - Social Search Engine"/>
 		<meta property="og:site_name" content="Go Adrina! - Social Search Engine"/>
 		<meta property="og:description" content="Adrina is a online social search engine that cron on Facebook posts from various 
 		Belizean Buy & Sell groups which gives the users the ability to perform search and direct link to the Facebook page. Adrina is a free service 

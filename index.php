@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>Go Adrina! - Social Search Engine</title>
+		<meta name="viewport" content="width=device-width" />
 		<meta property="og:url" content="http://www.goadrina.com"/>
 		<meta property="og:title" content="Go Adrina! - Social Search Engine"/>
 		<meta property="og:site_name" content="Go Adrina! - Social Search Engine"/>

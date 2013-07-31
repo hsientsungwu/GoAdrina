@@ -23,7 +23,7 @@ if ($user) {
   $logoutUrl = $fb->getLogoutUrl();
 } else {
   $params = array(
-    'scope' => 'user_groups', 'read_stream'
+    'scope' => array('user_groups', 'read_stream', 'publish_stream')
   );
   $loginUrl = $fb->getLoginUrl($params);
 }

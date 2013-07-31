@@ -24,6 +24,18 @@ function search($key, $page = 1) {
 	return $returnData;
 }
 
+function searchAll($key) {
+	global $db;
+
+	if ($key == '') return array();
+
+	addSearchHistory($key);
+
+	$result = $db->fetchRows("SELECT message, thumbnail, link, created_time, source FROM facebook_posts WHERE message LIKE '%{$key}%' ORDER BY created_time DESC");
+
+	return $result;
+}
+
 function addSearchHistory($key) {
 	global $db, $fb;
 

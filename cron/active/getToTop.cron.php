@@ -6,7 +6,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
 global $fb;
 
-$postId = '329970863803797';
+$postId = '330139017120315';
 
 $postInfo = $fb->api($postId . '/comments', 'GET');
 

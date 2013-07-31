@@ -6,8 +6,6 @@ require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
 $start = microtime(true);
 
-require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
-
 $fb_groups = getFacebookGroups();
 
 $total_posts_count = 0;

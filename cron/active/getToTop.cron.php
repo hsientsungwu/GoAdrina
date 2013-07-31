@@ -12,14 +12,24 @@ $postInfo = $fb->api($postId . '/comments', 'GET');
 
 var_dump($postInfo);
 
-$data = array(
-	'message' => ':)'
-);
+if ($postInfo) {
+	$data = array(
+		'message' => ':)'
+	);
 
-$newCommentData = $fb->api($postId . "/comments", 'POST', $data);
+	try {
+		$newCommentData = $fb->api($postId . "/comments", 'POST', $data);
+	} catch (FacebookApiException $e) {
+		$result = $e->getResult();
+	}
 
-sleep(5);
+	sleep(5);
 
-$result = $fb->api($newCommentData['id'], 'DELETE');
+	if (isset($newCommentData['id'])) {
+		$result = $fb->api($newCommentData['id'], 'DELETE');
+	}
+}
+
+	
 
 var_dump($result);

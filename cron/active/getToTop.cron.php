@@ -17,6 +17,8 @@ $successCount = 0;
 foreach ($postIds as $postId) {
 	$postInfo = $fb->api('/' . $postId['entityId'], 'GET');
 
+	echo "<pre>"; print_r($postInfo); echo "<pre>";
+
 	if (count($postInfo) && $postInfo['id']) {
 
 		$data = array(

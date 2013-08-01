@@ -48,6 +48,6 @@ $emailContent['subject'] = "[Go Adrina!] Facebook Post Ads Cron Result";
 $emailContent['body'] = "Total Post Ads: {$totalCount} and Total SUCCESS: {$successCount}";
 send_email($emailContent, 'admin');
 
-echo $emailContent['message'];
+echo $emailContent['body'];
 
 

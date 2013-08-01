@@ -1,7 +1,5 @@
 <?php
 
-if ($_SERVER['DOCUMENT_ROOT'] == "") $_SERVER['DOCUMENT_ROOT'] = '/home/hwu1986/public_html/goadrina/htdocs/';
-
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
 global $fb, $db;
@@ -11,11 +9,8 @@ $fb->setAccessToken($token);
 
 $user = $fb->getUser();
 
-print_r("<h4>{$user}</h4>");
-print_r("<p>{$token}</p>");
-die;
-
-$postIds = $db->fetchAll("SELECT entityId FROM facebook_entity WHERE entityType = ? AND category = ?", array(FacebookEntityType::POST, AdrinaCategory::FACEBOOKADS));
+$postIds = $db->fetchAll("SELECT entityId FROM facebook_entity WHERE entityType = ? AND category = ?", 
+						array(FacebookEntityType::POST, AdrinaCategory::FACEBOOKADS));
 
 $totalCount = count($postIds);
 $successCount = 0;
@@ -57,3 +52,4 @@ send_email($emailContent, 'admin');
 echo $emailContent['body'];
 
 
+?>

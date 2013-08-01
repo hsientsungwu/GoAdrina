@@ -35,9 +35,10 @@ foreach ($postIds as $postId) {
 				$successCount++;
 			}
 		} catch (FacebookApiException $e) {
-			echo "<pre>"; print_r($e->getResult()); echo "<pre>";
+			$result = $e->getResult();
+			echo "<pre>"; print_r($result); echo "<pre>";
 
-			$content['message'] = $e->getResult();
+			$content['message'] = $result['error']['type'] . ' - ' . $result['error']['message'];
 			$content['type'] = "Facebook Post Ads: {$postId['entityId']}";
 
 			log_error($content);

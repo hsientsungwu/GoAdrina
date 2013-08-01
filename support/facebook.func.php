@@ -1,15 +1,11 @@
 <?php
 
-function renewFacebookAccessToken() {
-	global $db, $fb;
+function getAccessTokenForAdminUser() {
+    global $db, $fbAdminUser;
 
-	$newSession = array(
-		'access_token' => $fb->getAccessToken()
-	);
+    $token = $db->fetchCell("SELECT access_token FROM facebook_session WHERE user_id = ?", array($fbAdminUser));
 
-	$affected = $db->update($newSession, 'facebook_session', 'id = ?', array($fb->getUser()));
-
-	return ($affected) ? true : false;
+    return $token;
 }
 
 function isFacebookAccountStored($userId) {
@@ -92,4 +88,12 @@ function getFacebookGroups() {
     $groups = $db->fetchKeyValue("SELECT id, name FROM facebook_groups ORDER BY id");
 
     return $groups;
+}
+
+function getFacebookAdPosts() {
+    global $db;
+
+    $posts = $db->fetchAll("SELECT * FROM facebook_entity WHERE entityType = ? AND category = ? ORDER BY id DESC", array(1,1));
+
+    return $posts;
 }

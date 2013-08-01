@@ -24,10 +24,11 @@
 		<div class="row">
 			<div class="large-12 columns">
 				<div class="row">
-					<div class="large-3 large-centered columns">
+					<div class="large-4 large-centered columns">
 						<ul class="inline-list">
 						  	<li><a href="/admin/">Stats</a></li>
 						  	<li><a href="/admin/groups.php">Groups</a></li>
+						  	<li><a href="/admin/marketing.php">Marketing</a></li>
 						  	<li><a href="/admin/posts.php">Posts</a></li>
 						</ul>
 					</div>

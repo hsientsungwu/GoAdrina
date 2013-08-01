@@ -17,7 +17,7 @@ $successCount = 0;
 foreach ($postIds as $postId) {
 	$postInfo = $fb->api('/' . $postId['entityId'], 'GET');
 
-	if (count($postInfo)) {
+	if (count($postInfo) && $postInfo['id']) {
 
 		$data = array(
 			'message' => ':)'
@@ -37,7 +37,7 @@ foreach ($postIds as $postId) {
 			$content['message'] = $e->getResult();
 			$content['type'] = "Facebook Post Ads: {$postId['entityId']}";
 
-			log_errors($content);
+			log_error($content);
 		}
 	}
 }

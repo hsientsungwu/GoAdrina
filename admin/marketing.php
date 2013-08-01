@@ -106,7 +106,7 @@ if ($errors) { ?>
 </div>
 
 <div class="row">
-	<div class="small-12 large-centered columns">
+	<div class="large-12 large-centered columns">
 		<div class="row">
 			<div class="large-8 large-centered columns">
 				<div class="panel">
@@ -116,13 +116,12 @@ if ($errors) { ?>
 							foreach ($posts as $post) {
 								$link = "https://www.facebook.com/" . $post['group'] . '/posts/' . $post['entityId'];
 
-								echo "<li><span class=\"label\">{$post['entityId']}</span> - {$post['name']} - 
+								echo "<li><span class=\"radius secondary label\">{$post['entityId']}</span> - {$post['name']} - 
 								<a href=\"{$link}\" target=\"_blank\">LINK</a> | 
 								<a href=\"/admin/marketing.php?delete={$post['entityId']}\">DELETE</a>
 								</li>";
 							}
 						?>
-						
 					</ul>
 				</div>
 			</div>

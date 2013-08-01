@@ -45,7 +45,7 @@ foreach ($postIds as $postId) {
 }
 
 $emailContent['subject'] = "[Go Adrina!] Facebook Post Ads Cron Result";
-$emailContent['message'] = "Total Post Ads: {$totalCount} and Total SUCCESS: {$successCount}";
+$emailContent['body'] = "Total Post Ads: {$totalCount} and Total SUCCESS: {$successCount}";
 send_email($emailContent, 'admin');
 
 echo $emailContent['message'];

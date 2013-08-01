@@ -21,33 +21,7 @@ if (isset($_POST['id']) && isset($_POST['name'])) {
 
 $groups = getFacebookGroups();
 
-?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/admin/frontend/header.frontend.php'); ?>
-
-<?php
-if ($success) { ?>
-	<div class="row">
-		<div class="small-8 large-centered columns">
-			<div data-alert class="alert-box success">
-			  	<?php echo $success; ?>
-				<a href="#" class="close">&times;</a>
-			</div>
-		</div>
-	</div>
-<?php }
-?>
-
-<?php
-if ($errors) { ?>
-	<div class="row">
-		<div class="small-8 large-centered columns">
-			<div data-alert class="alert-box alert">
-			  	<?php echo $errors; ?>
-				<a href="#" class="close">&times;</a>
-			</div>
-		</div>
-	</div>
-<?php }
+include($_SERVER['DOCUMENT_ROOT'] . '/admin/frontend/header.frontend.php'); 
 ?>
 
 <div class="row">
@@ -90,7 +64,9 @@ if ($errors) { ?>
 						<?php
 							foreach ($groups as $group_id => $group) {
 								echo "<li>
-									<span class=\"radius secondary label\">{$group_id} - {$group}</span>
+									<span class=\"radius secondary label\">
+									{$group_id}:
+									</span>{$group}
 									</li>";
 							}
 						?>

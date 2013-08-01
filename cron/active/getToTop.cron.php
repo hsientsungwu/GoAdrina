@@ -4,32 +4,48 @@ if ($_SERVER['DOCUMENT_ROOT'] == "") $_SERVER['DOCUMENT_ROOT'] = '/home/hwu1986/
 
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
-global $fb;
+global $fb, $db;
 
-$postId = '330139017120315';
+$token = getAccessTokenForAdminUser();
+$fb->setAccessToken($token);
 
-$postInfo = $fb->api($postId . '/comments', 'GET');
+$postIds = $db->fetchAll("SELECT entityId FROM facebook_entity WHERE entityType = ? AND category = ?", array(FacebookEntityType::POST, AdrinaCategory::FACEBOOKADS));
 
-var_dump($postInfo);
+$totalCount = count($postIds);
+$successCount = 0;
 
-if ($postInfo) {
-	$data = array(
-		'message' => ':)'
-	);
+foreach ($postIds as $postId) {
+	$postInfo = $fb->api('/' . $postId['entityId'], 'GET');
 
-	try {
-		$newCommentData = $fb->api($postId . "/comments", 'POST', $data);
-	} catch (FacebookApiException $e) {
-		$result = $e->getResult();
-	}
+	if (count($postInfo)) {
 
-	sleep(5);
+		$data = array(
+			'message' => ':)'
+		);
 
-	if (isset($newCommentData['id'])) {
-		$result = $fb->api($newCommentData['id'], 'DELETE');
+		try {
+			$newCommentData = $fb->api('/'. $postId['entityId'] . "/comments", 'POST', $data);
+
+			if (isset($newCommentData['id'])) {
+				sleep(3);
+				$result = $fb->api($newCommentData['id'], 'DELETE');
+				$successCount++;
+			}
+		} catch (FacebookApiException $e) {
+			var_dump($e->getResult());
+
+			$content['message'] = $e->getResult();
+			$content['type'] = "Facebook Post Ads: {$postId['entityId']}";
+
+			log_errors($content);
+		}
 	}
 }
 
-	
+$emailContent['subject'] = "[Go Adrina!] Facebook Post Ads Cron Result";
+$emailContent['message'] = "Total Post Ads: {$totalCount} and Total SUCCESS: {$successCount}";
+send_email($emailContent, 'admin');
 
-var_dump($result);
+echo $emailContent['message'];
+
+

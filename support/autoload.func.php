@@ -11,6 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/config/master_config.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/support/facebook.func.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/support/common.func.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/support/search.func.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/support/enum.php');
 
 function __autoload($className) {
 	$configRoot = $_SERVER['DOCUMENT_ROOT'] . '/config/';

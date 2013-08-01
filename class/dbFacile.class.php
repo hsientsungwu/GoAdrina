@@ -137,6 +137,7 @@ abstract class dbFacile {
 			return $this->_fetchAll($result);
 		return array();
 	}
+	
 	// Sometimes I get confused. This is explicit ... "give me the ROWS"
 	public function fetchRows($sql, $parameters = array()) {
 		return $this->fetchAll($sql, $parameters);

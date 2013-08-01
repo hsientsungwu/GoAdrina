@@ -24,26 +24,27 @@ function search($key, $page = 1) {
 	return $returnData;
 }
 
-function searchAll($key) {
+function searchAll($key, $source = Source::WEBSITE) {
 	global $db;
 
 	if ($key == '') return array();
 
-	addSearchHistory($key);
+	addSearchHistory($key, $source);
 
 	$result = $db->fetchRows("SELECT message, thumbnail, link, created_time, source FROM facebook_posts WHERE message LIKE '%{$key}%' ORDER BY created_time DESC");
 
 	return $result;
 }
 
-function addSearchHistory($key) {
+function addSearchHistory($key, $source = Source::WEBSITE) {
 	global $db, $fb;
 
 	$user = $fb->getUser();
 
 	$newHistory = array(
 		'user' => ($user ? $user : '0'),
-		'key' => $key
+		'key' => $key,
+		'source' => $source,
 	);
 
 	$affected = $db->insert($newHistory, 'search_history');

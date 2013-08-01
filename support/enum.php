@@ -9,3 +9,8 @@ class FacebookEntityType {
 class AdrinaCategory {
 	const FACEBOOKADS = 1;
 }
+
+class Source {
+	const WEBSITE = 1;
+	const EXTENSION = 2;
+}

@@ -6,7 +6,7 @@ if ($_GET) {
 	$key = htmlentities($_GET['k']);
 	$page = ($_GET['page'] ? $_GET['page'] : 1);
 
-	$results = searchAll($key);
+	$results = searchAll($key, Source::EXTENSION);
 }
 
 if (count($results)) {

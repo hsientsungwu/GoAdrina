@@ -4,11 +4,14 @@ if ($_SERVER['DOCUMENT_ROOT'] == "") $_SERVER['DOCUMENT_ROOT'] = '/home/hwu1986/
 
 require($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 
+$debug = ($_GET['debug']) ? true : false;
+
 $start = microtime(true);
 
 $fb_groups = getFacebookGroups();
 
 $total_posts_count = 0;
+$corozal_count = 0;
 
 foreach ($fb_groups as $fb_group_id => $fb_group_name) {
 
@@ -32,9 +35,16 @@ foreach ($fb_groups as $fb_group_id => $fb_group_name) {
             }
 
             if (!isFacebookPostStored($post['id'])) {
-                if (addFacebookPost($post)) $store_posts_count++;
+                if (addFacebookPost($post)) {
+                    if (strstr(strtolower($post['message']), 'corozal')) {
+                        postToCorozal($post['id']);
+                        $corozal_count++;
+                    }
 
-                print_r("<br><b>{$post['id']}</b><br>{$post['message']}<br>");
+                    $store_posts_count++;
+                }
+
+                if ($debug) print_r("<br><b>{$post['id']}</b><br>{$post['message']}<br>");
             }
 
             $posts_count++;
@@ -47,6 +57,7 @@ foreach ($fb_groups as $fb_group_id => $fb_group_name) {
 	    	'posts_count' => $posts_count,
 	    	'store_posts_count' => $store_posts_count,
 	    	'store_users_count' => $store_users_count,
+            'corozal_post_count' => $corozal_count,
 	    )
     );
 
@@ -59,4 +70,6 @@ $end = microtime(true);
 
 $total = $end - $start;
 
-print_r("<h3>Time spent to execute {$total_posts_count} posts: {$total} seconds");
+print_r("<h3>Time spent to execute {$total_posts_count} posts: {$total} seconds</h3>");
+print_r("<h4>Total Corozal Post Count: {$corozal_count}</h4>");
+?>

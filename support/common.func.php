@@ -36,12 +36,13 @@ function log_cron($stats = array(), $total_posts = 0) {
 									<li>Total Cron Posts: {$fb_group_data['stat']['posts_count']}</li>
 									<li>Total Stored Posts: {$fb_group_data['stat']['store_posts_count']}</li>
 									<li>Total Stored Users: {$fb_group_data['stat']['store_users_count']}</li>
+									<li>Total Corozal Posts: {$fb_group_data['stat']['corozal_post_count']}</li>
 								</ul></p>";
 		}
 	}
 
 	if ($send_email_flag) {
-		$content['subject'] = '[Andrina Social Cron] Ran ' . $total_posts . ' posts on ' . date("Y-m-d H:i:s");
+		$content['subject'] = 'Ran ' . $total_posts . ' posts on ' . date("Y-m-d H:i:s");
 		send_email($content, 'admin');
 	}
 
@@ -50,7 +51,7 @@ function log_cron($stats = array(), $total_posts = 0) {
 
 function send_email($content, $type = 'admin') {	
 	// subject
-	$subject = $content['subject'];
+	$subject = '[Go Adrina!] ' . $content['subject'];
 
 	// message
 	$message = "
@@ -69,8 +70,8 @@ function send_email($content, $type = 'admin') {
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 	// Additional headers
-	$headers .= 'To: Steve <steve@goadrina.com>' . "\r\n";
-	$headers .= 'From: Go Andrina! <no-reply@goadrina.com>' . "\r\n";
+	$headers .= 'To: HTWU <web@htwu.net>' . "\r\n";
+	$headers .= 'From: HTWU No-Reply Message <no-reply@htwu.net>' . "\r\n";
 	
 	// Mail it
 	mail($to, $subject, $message, $headers);

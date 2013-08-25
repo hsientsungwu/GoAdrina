@@ -37,7 +37,7 @@ foreach ($fb_groups as $fb_group_id => $fb_group_name) {
             if (!isFacebookPostStored($post['id'])) {
                 if (addFacebookPost($post)) {
                     if (strstr(strtolower($post['message']), 'corozal')) {
-                        postToCorozal($post['id']);
+                        //postToCorozal($post['id']);
                         $corozal_count++;
                     }
 

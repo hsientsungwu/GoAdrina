@@ -71,8 +71,8 @@ function send_email($content, $type = 'admin') {
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 	// Additional headers
-	$headers .= 'To: HTWU <web@htwu.net>' . "\r\n";
-	$headers .= 'From: HTWU No-Reply Message <no-reply@htwu.net>' . "\r\n";
+	$headers .= 'To: HTWU Webmaster<web@htwu.net>' . "\r\n";
+	$headers .= 'From: HTWU No-Reply<no-reply@htwu.net>' . "\r\n";
 	
 	// Mail it
 	mail($to, $subject, $message, $headers);

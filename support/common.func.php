@@ -42,7 +42,7 @@ function log_cron($stats = array(), $total_posts = 0) {
 	}
 
 	if ($send_email_flag) {
-		$content['subject'] = 'Ran ' . $total_posts . ' posts on ' . date("Y-m-d H:i:s");
+		$content['subject'] = 'Report for Facebook Hourly Cron';
 		send_email($content, 'admin');
 	}
 

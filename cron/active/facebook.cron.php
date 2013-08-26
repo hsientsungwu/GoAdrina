@@ -61,15 +61,16 @@ foreach ($fb_groups as $fb_group_id => $fb_group_name) {
 	    )
     );
 
+    $total_stored_posts_count += $store_posts_count;
     $total_posts_count += $posts_count;
 }
 
-log_cron($stats, $total_posts_count);
+log_cron($stats, $total_stored_posts_count);
 
 $end = microtime(true);
 
 $total = $end - $start;
 
-print_r("<h3>Time spent to execute {$total_posts_count} posts: {$total} seconds</h3>");
+print_r("<h3>Time spent to retrieve {$total_posts_count} posts and store {$total_stored_posts_count} posts: {$total} seconds</h3>");
 print_r("<h4>Total Corozal Post Count: {$corozal_count}</h4>");
 ?>

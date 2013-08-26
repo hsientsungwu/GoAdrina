@@ -42,7 +42,8 @@ function log_cron($stats = array(), $total_posts = 0) {
 	}
 
 	if ($send_email_flag) {
-		$content['subject'] = 'Report for Facebook Hourly Cron';
+		$posts_count_msg = ($total_posts > 0 ? 'with posts stored' : 'with no post stored');
+		$content['subject'] = 'Report for Facebook Hourly Cron ' . $posts_count_msg;
 		send_email($content, 'admin');
 	}
 
